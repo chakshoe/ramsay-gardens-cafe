@@ -385,7 +385,7 @@
       <a href="#menu">Full Menu</a>
       <a href="#visit">Visit</a>
       <a href="#connect">Social</a>
-      <a href="#visit" class="nav-cta">Contact</a>
+      <a href="#visit" class="nav-cta js-book">Book a Table</a>
     </nav>
   </div>
 </header>
@@ -400,9 +400,10 @@
     <div class="eyebrow">Vermont South · Est. 2021</div>
     <h1>Ramsay Gardens Cafe</h1>
     <p>A homely neighbourhood cafe — great coffee, fresh food and a warm welcome. Fully licensed.</p>
-    <div>
-      <a href="#highlights" class="btn btn-primary">View Menu</a>
-      <a href="#visit" class="btn btn-ghost">Find Us</a>
+    <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
+      <a href="#visit" class="btn btn-primary js-book">Book a Table</a>
+      <a href="#highlights" class="btn btn-ghost" style="margin:0;">View Menu</a>
+      <a href="#visit" class="btn btn-ghost" style="margin:0;">Find Us</a>
     </div>
   </div>
 </section>
@@ -711,6 +712,7 @@
             </ul>
           </div>
         </div>
+        <a href="#visit" class="btn btn-dark js-book" style="margin-top:6px;">Book a Table Online</a>
       </div>
 
       <div class="map-col reveal">
@@ -868,7 +870,25 @@
     "https://www.instagram.com/p/DVZujEyE455/",
   ];
 
+  /* ============================================================
+     ⭐ ADD YOUR WOWAPPS BOOKING LINK HERE ⭐
+     Paste the booking URL WowApps gives you between the quotes.
+     Every "Book a Table" button then opens it in a new tab.
+     Leave it empty ("") and those buttons simply scroll to the
+     contact details (phone number) instead.
+     ============================================================ */
+  var BOOKING_URL = "";
+
   (function () {
+    // ---- Booking buttons -> WowApps ----
+    if (BOOKING_URL) {
+      document.querySelectorAll('.js-book').forEach(function (a) {
+        a.setAttribute('href', BOOKING_URL);
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener');
+      });
+    }
+
     // ---- Instagram live embeds (or fallback grid) ----
     var igFeed = document.getElementById('igFeed');
     var igFallback = document.getElementById('igFallback');
@@ -900,7 +920,7 @@
     document.querySelectorAll('a[href^="#"]').forEach(function (a) {
       a.addEventListener('click', function (e) {
         var id = a.getAttribute('href');
-        if (id === '#' || id.length < 2) return;
+        if (!id || id.charAt(0) !== '#' || id.length < 2) return;
         var target = document.querySelector(id);
         if (!target) return;
         e.preventDefault();
