@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ramsay Gardens Cafe — Vermont South</title>
+<meta name="description" content="Ramsay Gardens Cafe in Vermont South — a homely neighbourhood cafe established in 2021. Great coffee, fresh food, fully licensed. 5 minutes from The Glen, tram stop 76 at the door." />
+<meta name="theme-color" content="#faf8f3" />
+
+<!-- Favicon / app icon (uses your logo file) -->
+<link rel="icon" type="image/png" href="favicon.png" />
+<link rel="apple-touch-icon" href="favicon.png" />
+
+<!-- Social share preview -->
+<meta property="og:title" content="Ramsay Gardens Cafe — Vermont South" />
+<meta property="og:description" content="A homely neighbourhood cafe in Vermont South. Great coffee, fresh food, fully licensed. Est. 2021." />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="favicon.png" />
+<meta name="twitter:card" content="summary_large_image" />
+
+<!--
+  ============================================================
+  RAMSAY GARDENS CAFE — single-file website
+  Everything (HTML, CSS, JS) lives in this one file so you can
+  open it by double-clicking, or host it anywhere.
+
+  EASY THINGS TO EDIT YOURSELF:
+   • Text / prices  -> search for the words and change them.
+   • Photos         -> search for "REPLACE-PHOTO" and swap the URL
+                       inside src="..." with your own image link.
+   • Social links   -> search for "REPLACE-SOCIAL".
+   • Address / map  -> search for "REPLACE-MAP".
+  ============================================================
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #faf8f3;
+    --bg-alt: #f1ede3;
+    --ink: #2c2a25;
+    --muted: #6f6a5f;
+    --accent: #586e4b;
+    --line: #e2dccf;
+    --radius: 14px;
+    --maxw: 1080px;
+    --nav-h: 78px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.65;
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3 { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 600; line-height: 1.15; }
+
+  a { color: inherit; text-decoration: none; }
+
+  img { max-width: 100%; height: auto; }
+
+  .visually-hidden {
+    position: absolute; width: 1px; height: 1px;
+    padding: 0; margin: -1px; overflow: hidden;
+    clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+  }
+
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+
+  section { padding: 96px 0; scroll-margin-top: var(--nav-h); }
+
+  .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+
+  /* ---------- Buttons ---------- */
+  .btn {
+    display: inline-block;
+    padding: 13px 30px;
+    border-radius: 100px;
+    font-size: 0.92rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    transition: all 0.25s;
+    cursor: pointer;
+    border: 1px solid transparent;
+    font-family: inherit;
+  }
+  .btn-primary { background: var(--bg); color: var(--ink); }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 26px rgba(0,0,0,0.18); }
+  .btn-ghost { border-color: rgba(255,255,255,0.7); color: #fff; margin-left: 10px; }
+  .btn-ghost:hover { background: rgba(255,255,255,0.12); }
+  .btn-dark { background: var(--ink); color: var(--bg); }
+  .btn-dark:hover { transform: translateY(-2px); box-shadow: 0 10px 26px rgba(0,0,0,0.14); }
+  .btn-outline { border-color: var(--ink); color: var(--ink); }
+  .btn-outline:hover { background: var(--ink); color: var(--bg); }
+
+  /* ---------- Nav ---------- */
+  header.nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(250, 248, 243, 0.85);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: var(--nav-h);
+  }
+  .brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+  .nav-links { display: flex; gap: 30px; align-items: center; }
+  .nav-links a {
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: var(--muted);
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-cta {
+    border: 1px solid var(--ink);
+    padding: 8px 18px;
+    border-radius: 100px;
+    color: var(--ink) !important;
+    transition: all 0.2s;
+  }
+  .nav-cta:hover { background: var(--ink); color: var(--bg) !important; }
+  .menu-toggle { display: none; background: none; border: 0; cursor: pointer; font-size: 1.5rem; color: var(--ink); }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    min-height: 86vh;
+    display: flex;
+    align-items: center;
+    /* REPLACE-PHOTO (hero background) */
+    background:
+      linear-gradient(rgba(44,42,37,0.34), rgba(44,42,37,0.46)),
+      url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+    color: #fff;
+    text-align: center;
+  }
+  .hero h1 { font-size: clamp(2.8rem, 7vw, 5rem); margin-bottom: 18px; }
+  .hero p { font-size: clamp(1rem, 2vw, 1.25rem); font-weight: 300; max-width: 560px; margin: 0 auto 32px; opacity: 0.95; }
+  .hero .eyebrow { color: #e9e3d4; }
+
+  /* ---------- Section headings ---------- */
+  .sec-head { text-align: center; margin-bottom: 56px; }
+  .sec-head h2 { font-size: clamp(2rem, 4vw, 2.8rem); }
+  .sec-head p { color: var(--muted); max-width: 540px; margin: 14px auto 0; }
+
+  /* ---------- Highlights (menu preview) ---------- */
+  .highlights { background: var(--bg); }
+  .hl-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .hl-card {
+    background: var(--bg-alt);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 26px 24px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .hl-card:hover { transform: translateY(-4px); box-shadow: 0 14px 30px rgba(0,0,0,0.07); }
+  .hl-card .top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 8px; }
+  .hl-card h3 { font-size: 1.5rem; }
+  .hl-card .price { color: var(--accent); font-weight: 600; white-space: nowrap; font-family: 'Inter', sans-serif; font-size: 0.95rem; }
+  .hl-card p { color: var(--muted); font-size: 0.9rem; }
+  .hl-licensed {
+    margin-top: 26px;
+    text-align: center;
+    background: var(--ink);
+    color: var(--bg);
+    border-radius: var(--radius);
+    padding: 22px;
+    font-size: 0.98rem;
+  }
+  .hl-licensed strong { font-weight: 600; }
+  .hl-cta { text-align: center; margin-top: 36px; }
+
+  /* ---------- About ---------- */
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+  /* REPLACE-PHOTO (about image) */
+  .about-grid > img { width: 100%; border-radius: var(--radius); aspect-ratio: 4/5; object-fit: cover; }
+  .about { background: var(--bg-alt); }
+  .about h2 { font-size: clamp(2rem, 4vw, 2.8rem); margin-bottom: 20px; }
+  .about p { color: var(--muted); margin-bottom: 16px; }
+
+  /* ---------- Full Menu ---------- */
+  .menu { background: var(--bg); }
+  .menu-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; }
+  .menu-cat h3 { font-size: 1.6rem; margin-bottom: 24px; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+  .menu-item { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; margin-bottom: 20px; }
+  .menu-item .name { font-weight: 500; }
+  .menu-item .desc { font-size: 0.85rem; color: var(--muted); font-weight: 300; }
+  .menu-item .price { font-variant-numeric: tabular-nums; color: var(--accent); font-weight: 500; white-space: nowrap; }
+  .menu-note { text-align: center; margin-top: 48px; color: var(--muted); font-size: 0.9rem; }
+
+  .menu-tabs { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 48px; }
+  .menu-tab {
+    border: 1px solid var(--line);
+    background: transparent;
+    color: var(--muted);
+    padding: 9px 20px;
+    border-radius: 100px;
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.25s ease;
+  }
+  .menu-tab:hover { color: var(--ink); border-color: var(--muted); }
+  .menu-tab.active { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+
+  .menu-panels { position: relative; }
+  .menu-panel { display: none; }
+  .menu-panel.active { display: block; animation: panelIn 0.5s cubic-bezier(0.2, 0.7, 0.2, 1); }
+  @keyframes panelIn {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: none; }
+  }
+  .panel-sub { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.18em; color: var(--accent); text-align: center; margin-bottom: 28px; font-weight: 500; }
+  .price-tier { font-size: 0.75rem; color: var(--muted); font-weight: 400; }
+
+  /* ---------- Visit ---------- */
+  .visit { background: var(--bg-alt); }
+  .visit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: stretch; }
+  .info-card h2 { font-size: clamp(2rem, 4vw, 2.8rem); margin-bottom: 24px; }
+  .info-row { display: flex; gap: 14px; margin-bottom: 22px; align-items: flex-start; }
+  .info-row .ico { font-size: 1.15rem; line-height: 1.5; }
+  .info-row .label { font-weight: 500; display: block; margin-bottom: 2px; }
+  .info-row .val { color: var(--muted); font-size: 0.95rem; }
+  .info-row a.val:hover { color: var(--accent); text-decoration: underline; }
+  .hours-list { list-style: none; font-size: 0.95rem; }
+  .hours-list li { display: flex; justify-content: space-between; padding: 7px 0; border-bottom: 1px dashed var(--line); color: var(--muted); }
+  .hours-list li span:first-child { color: var(--ink); }
+  .map-col { display: flex; flex-direction: column; gap: 16px; }
+  .map-embed { border: 0; width: 100%; flex: 1; min-height: 320px; border-radius: var(--radius); filter: grayscale(0.15) contrast(1.02); }
+  .map-btns { display: flex; gap: 10px; flex-wrap: wrap; }
+  .map-btns .btn { padding: 11px 22px; font-size: 0.85rem; }
+
+  .getting-here { margin-top: 56px; }
+  .gh-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 28px; }
+  .gh-card { background: var(--bg); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; }
+  .gh-card .ico { font-size: 1.6rem; display: block; margin-bottom: 10px; }
+  .gh-card h3 { font-size: 1.3rem; margin-bottom: 8px; }
+  .gh-card p { color: var(--muted); font-size: 0.9rem; margin-bottom: 12px; }
+  .gh-card a.link { color: var(--accent); font-size: 0.85rem; font-weight: 500; }
+  .gh-card a.link:hover { text-decoration: underline; }
+
+  /* ---------- Social ---------- */
+  .social { background: var(--ink); color: var(--bg); }
+  .social .sec-head h2 { color: var(--bg); }
+  .social .sec-head p { color: #c9c3b5; }
+  .social .eyebrow { color: #b9b3a4; }
+  .ig-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 36px; }
+  .ig-tile { position: relative; aspect-ratio: 1; border-radius: 10px; overflow: hidden; display: block; }
+  /* REPLACE-PHOTO (social tiles) */
+  .ig-tile img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
+  .ig-tile:hover img { transform: scale(1.08); }
+  .ig-overlay {
+    position: absolute; inset: 0;
+    background: rgba(44,42,37,0.55);
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; transition: opacity 0.3s ease;
+  }
+  .ig-tile:hover .ig-overlay { opacity: 1; }
+  .ig-overlay svg { width: 30px; height: 30px; fill: #fff; }
+  .social-buttons { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .social-btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 13px 26px; border-radius: 100px;
+    border: 1px solid rgba(255,255,255,0.3);
+    color: var(--bg); font-size: 0.9rem; font-weight: 500;
+    transition: all 0.25s ease;
+  }
+  .social-btn:hover { background: var(--bg); color: var(--ink); transform: translateY(-2px); }
+  .social-btn:hover svg { fill: var(--ink); }
+  .social-btn svg { width: 18px; height: 18px; fill: var(--bg); transition: fill 0.25s; }
+
+  .social-block { margin-bottom: 52px; }
+  .social-panel-title { color: var(--bg); font-size: 1.6rem; margin-bottom: 22px; text-align: center; }
+  .ig-embed-feed { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 18px; align-items: start; }
+  .ig-embed-feed .instagram-media { margin: 0 !important; min-width: 0 !important; width: 100% !important; }
+  .fb-wrap { background: #fff; border-radius: 12px; overflow: hidden; min-height: 500px; max-width: 500px; margin: 0 auto; }
+  .fb-wrap iframe { width: 100%; border: 0; display: block; }
+
+  /* ---------- Logo ---------- */
+  .brand { display: flex; align-items: center; gap: 10px; }
+  .brand-logo { height: 56px; width: auto; display: block; }
+  .hero-logo { display: inline-block; margin-bottom: 24px; }
+  .hero-logo img { width: 300px; max-width: 72vw; display: block; filter: drop-shadow(0 3px 14px rgba(0,0,0,0.35)); }
+  .hero-logo.noimg { display: none; }
+  .about-logo { width: 160px; margin-bottom: 20px; display: block; }
+  .footer-logo { width: 150px; max-width: 60%; margin: 0 auto 16px; display: block; }
+
+  /* ---------- Footer ---------- */
+  footer {
+    background: var(--bg-alt);
+    text-align: center;
+    padding: 40px 24px;
+    font-size: 0.85rem;
+    color: var(--muted);
+    border-top: 1px solid var(--line);
+  }
+  footer .brand { display: block; font-size: 1.3rem; color: var(--ink); margin-bottom: 8px; }
+  footer a:hover { color: var(--accent); }
+
+  /* ---------- Reveal animation ---------- */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 900px) {
+    .hl-grid, .gh-grid { grid-template-columns: 1fr 1fr; }
+    .ig-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (max-width: 820px) {
+    section { padding: 64px 0; }
+    .menu-toggle { display: block; }
+    .nav-links {
+      position: absolute; top: var(--nav-h); left: 0; right: 0;
+      background: var(--bg); flex-direction: column; gap: 0;
+      border-bottom: 1px solid var(--line);
+      max-height: 0; overflow: hidden; transition: max-height 0.3s ease;
+    }
+    .nav-links.open { max-height: 420px; }
+    .nav-links a { padding: 16px 24px; width: 100%; border-top: 1px solid var(--line); }
+    .nav-cta { margin: 16px 24px; text-align: center; }
+    .about-grid, .menu-cols, .visit-grid { grid-template-columns: 1fr; gap: 36px; }
+    .about-grid img { aspect-ratio: 16/11; }
+    .menu-tabs {
+      flex-wrap: nowrap; overflow-x: auto; justify-content: flex-start;
+      padding: 0 24px 8px; margin: 0 -24px 36px;
+      -webkit-overflow-scrolling: touch; scrollbar-width: none;
+    }
+    .menu-tabs::-webkit-scrollbar { display: none; }
+  }
+  @media (max-width: 560px) {
+    .hl-grid, .gh-grid { grid-template-columns: 1fr; }
+    .ig-grid { grid-template-columns: repeat(2, 1fr); }
+    .hero { min-height: 80vh; }
+    .map-btns .btn { flex: 1; text-align: center; }
+  }
+  /* Large screens / TVs */
+  @media (min-width: 1700px) {
+    :root { --maxw: 1320px; }
+    body { font-size: 1.1rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== Nav ===== -->
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a href="#home" class="brand" aria-label="Ramsay Gardens Cafe — home">
+      <img src="logo-ink.png" alt="Ramsay Gardens Cafe" class="brand-logo"
+           onerror="this.style.display='none'; this.insertAdjacentText('afterend','Ramsay Gardens Cafe');" />
+    </a>
+    <button class="menu-toggle" aria-label="Open menu" id="menuBtn">☰</button>
+    <nav class="nav-links" id="navLinks">
+      <a href="#highlights">Menu</a>
+      <a href="#about">About</a>
+      <a href="#menu">Full Menu</a>
+      <a href="#visit">Visit</a>
+      <a href="#connect">Social</a>
+      <a href="#visit" class="nav-cta">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ===== Hero ===== -->
+<section class="hero" id="home">
+  <div class="wrap">
+    <div class="hero-logo" id="heroLogo">
+      <img src="logo-white.png" alt="Ramsay Gardens Cafe, established 2021"
+           onerror="document.getElementById('heroLogo').classList.add('noimg');" />
+    </div>
+    <div class="eyebrow">Vermont South · Est. 2021</div>
+    <h1>Ramsay Gardens Cafe</h1>
+    <p>A homely neighbourhood cafe — great coffee, fresh food and a warm welcome. Fully licensed.</p>
+    <div>
+      <a href="#highlights" class="btn btn-primary">View Menu</a>
+      <a href="#visit" class="btn btn-ghost">Find Us</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Menu Highlights (forefront overview) ===== -->
+<section class="highlights" id="highlights">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">A Taste of the Menu</div>
+      <h2>Our Favourites</h2>
+      <p>A little look at what we love serving. Scroll down for the full menu.</p>
+    </div>
+
+    <div class="hl-grid">
+      <div class="hl-card reveal">
+        <div class="top"><h3>Coffee</h3><span class="price">from $4.50</span></div>
+        <p>Locally roasted espresso, silky lattes, flat whites, chai and matcha — your morning, sorted.</p>
+      </div>
+      <div class="hl-card reveal">
+        <div class="top"><h3>Chilli Scrambled</h3><span class="price">$24.90</span></div>
+        <p>Scrambled eggs, mushrooms, chilli peanuts, fried shallots, toasted croissant &amp; parmesan snow.</p>
+      </div>
+      <div class="hl-card reveal">
+        <div class="top"><h3>Eggs Benedict</h3><span class="price">$24.90</span></div>
+        <p>Poached eggs, bacon, wilted baby spinach, hollandaise &amp; mixed sesame on toasted sourdough.</p>
+      </div>
+      <div class="hl-card reveal">
+        <div class="top"><h3>Reuben Sandwich</h3><span class="price">$19.00</span></div>
+        <p>Pastrami, swiss cheese, sauerkraut &amp; seeded mustard mayo on sourdough. <em>Tue–Fri till noon.</em></p>
+      </div>
+      <div class="hl-card reveal">
+        <div class="top"><h3>Katsu Sando</h3><span class="price">$17.00</span></div>
+        <p>Panko crumbed chicken breast, coleslaw, Japanese mayo &amp; tonkatsu sauce. <em>Tue–Fri till noon.</em></p>
+      </div>
+      <div class="hl-card reveal">
+        <div class="top"><h3>Tasmanian Salmon Bowl</h3><span class="price">$26.90</span></div>
+        <p>Crispy skinned salmon, mixed rice, onsen eggs, pickled veg, edamame &amp; teriyaki.</p>
+      </div>
+      <div class="hl-card reveal">
+        <div class="top"><h3>Chicken Crunch Bowl</h3><span class="price">$24.90</span></div>
+        <p>Crispy fried chicken, mixed rice, onsen eggs, pickled veg, edamame, sesame &amp; Japanese mayo.</p>
+      </div>
+      <div class="hl-card reveal">
+        <div class="top"><h3>Urban Burger</h3><span class="price">$24.90</span></div>
+        <p>Angus beef, bacon, fried egg, cheese, caramelised onion &amp; the lot, served with chips.</p>
+      </div>
+      <div class="hl-card reveal">
+        <div class="top"><h3>Sweet Tooth</h3><span class="price">from $16</span></div>
+        <p>Blueberry pancakes, Belgian waffles &amp; acai bowls — there's always room for dessert.</p>
+      </div>
+    </div>
+
+    <div class="hl-licensed reveal">
+      🍷 <strong>We're fully licensed</strong> — enjoy beer, wine &amp; spirits with your meal. See the full drinks list below.
+    </div>
+
+    <div class="hl-cta reveal">
+      <a href="#menu" class="btn btn-dark" data-scroll>See the Full Menu</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== About ===== -->
+<section class="about" id="about">
+  <div class="wrap about-grid">
+    <!-- REPLACE-PHOTO (about image) -->
+    <img class="reveal" src="https://images.unsplash.com/photo-1559925393-8be0ec4767c8?auto=format&fit=crop&w=900&q=80" alt="Inside Ramsay Gardens Cafe" />
+    <div class="reveal">
+      <img src="logo-ink.png" alt="Ramsay Gardens Cafe" class="about-logo"
+           onerror="this.style.display='none';" />
+      <div class="eyebrow">Our Story</div>
+      <h2>A homely little cafe since 2021.</h2>
+      <p>Ramsay Gardens Cafe opened its doors in 2021, created as a warm and welcoming home base for the residents of the Ramsay Gardens apartments right above us — and for the whole Vermont South neighbourhood.</p>
+      <p>From the very first flat white of the day to long, lazy brunches, we wanted a place that feels less like a cafe and more like someone's kitchen: friendly faces, generous plates, and a comfy seat that's always got your name on it.</p>
+      <p>Pop in, say hello, and stay a while. You're always welcome here.</p>
+      <a href="#menu" class="btn btn-outline" style="margin-top:8px;" data-scroll>See What's Cooking</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Full Menu ===== -->
+<section class="menu" id="menu">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">Eat &amp; Drink</div>
+      <h2>The Full Menu</h2>
+    </div>
+
+    <div class="menu-tabs reveal" role="tablist">
+      <button class="menu-tab active" data-tab="breakfast">Breakfast</button>
+      <button class="menu-tab" data-tab="lunch">Lunch Favourites</button>
+      <button class="menu-tab" data-tab="sandwiches">Sandwiches</button>
+      <button class="menu-tab" data-tab="kids">Kids</button>
+      <button class="menu-tab" data-tab="hot">Coffee &amp; Hot</button>
+      <button class="menu-tab" data-tab="cold">Cold Drinks</button>
+      <button class="menu-tab" data-tab="bar">Wine, Beer &amp; Spirits</button>
+      <button class="menu-tab" data-tab="soft">Soft Drinks</button>
+    </div>
+
+    <div class="menu-panels">
+
+      <!-- Breakfast -->
+      <div class="menu-panel active" id="panel-breakfast">
+        <div class="menu-cols">
+          <div class="menu-cat">
+            <div class="menu-item"><div><span class="name">Eggs on Toast</span><div class="desc">Fried, poached or scrambled</div></div><span class="price">$12</span></div>
+            <div class="menu-item"><div><span class="name">Acai Bowl</span><div class="desc">Fresh strawberries, coconut flakes, toasted granola &amp; banana topped with Biscoff</div></div><span class="price">$16</span></div>
+            <div class="menu-item"><div><span class="name">Blueberry Pancakes</span><div class="desc">3 stack buttermilk pancakes, berry coulis, vanilla ice cream, strawberries, blueberries, maple syrup</div></div><span class="price">$18.90</span></div>
+            <div class="menu-item"><div><span class="name">Turkish Eggs</span><div class="desc">Garlic yoghurt, romesco sauce, sausages, poached eggs, chilli oil &amp; za'atar</div></div><span class="price">$23.90</span></div>
+            <div class="menu-item"><div><span class="name">Eggs Benedict</span><div class="desc">Poached eggs, bacon, wilted baby spinach, hollandaise, mixed sesame seeds, toasted sourdough</div></div><span class="price">$24.90</span></div>
+          </div>
+          <div class="menu-cat">
+            <div class="menu-item"><div><span class="name">Breakfast Bruschetta</span><div class="desc">Poached eggs, avocado, bacon, fresh tomato, basil, Spanish onion salsa, feta &amp; balsamic glaze</div></div><span class="price">$24.90</span></div>
+            <div class="menu-item"><div><span class="name">Chilli Scrambled</span><div class="desc">Scrambled eggs, mushrooms, chilli peanuts, fried shallots, toasted croissant, sweet chilli mayo &amp; parmesan snow</div></div><span class="price">$24.90</span></div>
+            <div class="menu-item"><div><span class="name">Avo Smash</span><div class="desc">Poached eggs, avocado, split cherry tomatoes, feta, beetroot hommus, dukkah, toasted sourdough</div></div><span class="price">$24.90</span></div>
+            <div class="menu-item"><div><span class="name">Pulled Pork Belgian Waffle</span><div class="desc">Pulled pork, baby spinach, poached eggs, paprika hollandaise, bourbon BBQ sauce</div></div><span class="price">$25.90</span></div>
+            <div class="menu-item"><div><span class="name">Big Breakfast</span><div class="desc">Scrambled eggs, bacon, chicken sausage, hash brown, baby spinach, buttered mushrooms, grilled tomato</div></div><span class="price">$27.90</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lunch Favourites -->
+      <div class="menu-panel" id="panel-lunch">
+        <div class="menu-cols">
+          <div class="menu-cat">
+            <div class="menu-item"><div><span class="name">Gnocchi Vegetarian</span><div class="desc">House made potato gnocchi, zucchini, capsicum, baby spinach in a creamy napolitana sauce · add chicken $6</div></div><span class="price">$21.90</span></div>
+            <div class="menu-item"><div><span class="name">Penne Pollo Funghi</span><div class="desc">Chicken, mushroom, fresh herbs in a creamy white wine sauce topped with parmesan</div></div><span class="price">$23.90</span></div>
+            <div class="menu-item"><div><span class="name">Crispy Chicken Burger</span><div class="desc">Crispy fried chicken, cheese, pickles, lettuce, tomato, sweet chilli mayo, seeded milk bun, chips</div></div><span class="price">$23.90</span></div>
+            <div class="menu-item"><div><span class="name">Fish Tacos</span><div class="desc">Beer battered flathead tails, coleslaw, avocado, pico de gallo, tortilla, chipotle sauce</div></div><span class="price">$24.90</span></div>
+            <div class="menu-item"><div><span class="name">Lemon Pepper Calamari</span><div class="desc">Crispy fried calamari, chips, salad &amp; homemade tartare</div></div><span class="price">$24.90</span></div>
+            <div class="menu-item"><div><span class="name">Chicken Crunch Bowl</span><div class="desc">Crispy fried chicken, mixed rice, onsen eggs, pickled veg, edamame, sesame, teriyaki &amp; Japanese mayo</div></div><span class="price">$24.90</span></div>
+          </div>
+          <div class="menu-cat">
+            <div class="menu-item"><div><span class="name">Urban Burger</span><div class="desc">Angus beef patty, bacon, fried egg, cheese, caramelised onion, pickles, lettuce, tomato, BBQ sauce, chips</div></div><span class="price">$24.90</span></div>
+            <div class="menu-item"><div><span class="name">Ramsay Steak Sandwich</span><div class="desc">Pan seared porterhouse, caramelised onions, tomato, pickles, coleslaw, tomato relish, BBQ sauce, chips</div></div><span class="price">$24.90</span></div>
+            <div class="menu-item"><div><span class="name">Korean Style Fried Chicken</span><div class="desc">Marinated chicken thigh fried crispy, kimchi, chips &amp; sweet chilli mayo</div></div><span class="price">$25.90</span></div>
+            <div class="menu-item"><div><span class="name">Tasmanian Salmon Bowl</span><div class="desc">Crispy skinned salmon, mixed rice, onsen eggs, pickled veg, edamame, sesame, teriyaki &amp; Japanese mayo</div></div><span class="price">$26.90</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sandwiches -->
+      <div class="menu-panel" id="panel-sandwiches">
+        <div class="panel-sub">Available Tue–Fri · 8am to 12 noon</div>
+        <div class="menu-cols">
+          <div class="menu-cat">
+            <div class="menu-item"><div><span class="name">Kimchi Sandwich</span><div class="desc">Kimchi, mozzarella, American cheese, mixed leaves, sweet chilli mayo, sourdough · add grilled chicken $6</div></div><span class="price">$14</span></div>
+            <div class="menu-item"><div><span class="name">Stanley Rd Sandwich</span><div class="desc">Salami, mozzarella, American cheese, pesto, tomato, mixed leaves, sourdough</div></div><span class="price">$15</span></div>
+            <div class="menu-item"><div><span class="name">Chicken Power Melt</span><div class="desc">Chicken, avocado, sliced tomato, American &amp; mozzarella cheese, sourdough</div></div><span class="price">$15</span></div>
+          </div>
+          <div class="menu-cat">
+            <div class="menu-item"><div><span class="name">Grilled Cheese Sandwich</span><div class="desc">Melted mozzarella, swiss &amp; American cheese, sourdough, creamy tomato dipping sauce</div></div><span class="price">$17</span></div>
+            <div class="menu-item"><div><span class="name">Katsu Sando</span><div class="desc">Panko crumbed chicken breast, coleslaw, Japanese mayo, tonkatsu sauce</div></div><span class="price">$17</span></div>
+            <div class="menu-item"><div><span class="name">Reuben Sandwich</span><div class="desc">Pastrami, swiss cheese, sauerkraut, seeded mustard mayo, sourdough</div></div><span class="price">$19</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Kids -->
+      <div class="menu-panel" id="panel-kids">
+        <div class="panel-sub">All kids meals $15</div>
+        <div class="menu-cols">
+          <div class="menu-cat">
+            <div class="menu-item"><div><span class="name">Penne Carbonara</span></div><span class="price">$15</span></div>
+            <div class="menu-item"><div><span class="name">Scrambled Eggs with Sausage</span></div><span class="price">$15</span></div>
+            <div class="menu-item"><div><span class="name">Kids Chicken &amp; Chips</span><div class="desc">With tomato sauce</div></div><span class="price">$15</span></div>
+          </div>
+          <div class="menu-cat">
+            <div class="menu-item"><div><span class="name">Kids Fish &amp; Chips</span><div class="desc">With tomato sauce</div></div><span class="price">$15</span></div>
+            <div class="menu-item"><div><span class="name">Blueberry Pancakes</span><div class="desc">With ice cream &amp; maple syrup</div></div><span class="price">$15</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Coffee & Hot -->
+      <div class="menu-panel" id="panel-hot">
+        <div class="menu-cols">
+          <div class="menu-cat">
+            <h3>Coffee</h3>
+            <div class="menu-item"><div><span class="name">Short Mac · Piccolo · Long Mac</span></div><span class="price">$4.50</span></div>
+            <div class="menu-item"><div><span class="name">Cappuccino · Latte · Flat White</span><div class="desc price-tier">Small / Large</div></div><span class="price">$4.90 / $5.50</span></div>
+            <div class="menu-item"><div><span class="name">Hot Chocolate</span><div class="desc price-tier">Small / Large</div></div><span class="price">$5.50 / $6.00</span></div>
+            <div class="menu-item"><div><span class="name">Matcha Latte</span><div class="desc price-tier">Small / Large</div></div><span class="price">$5.50 / $6.00</span></div>
+            <div class="menu-item"><div><span class="name">Chai Latte · Dirty Chai Latte</span></div><span class="price">$5.50</span></div>
+            <div class="menu-item"><div><span class="name">White Choc Matcha</span></div><span class="price">$7.00</span></div>
+            <div class="menu-item"><div><span class="name">Babyccino</span></div><span class="price">$2.50</span></div>
+          </div>
+          <div class="menu-cat">
+            <h3>Tea &amp; Extras</h3>
+            <div class="menu-item"><div><span class="name">Loose Leaf Tea</span><div class="desc">Green, Peppermint, Lemongrass &amp; Ginger, Chamomile Blossom, English Breakfast, Earl Grey</div></div><span class="price">$6.00</span></div>
+            <div class="menu-item"><div><span class="name">Alternative Milks</span><div class="desc">Soy, oat, almond, lactose free</div></div><span class="price">$1.00</span></div>
+            <div class="menu-item"><div><span class="name">Flavoured Syrups</span><div class="desc">Vanilla, caramel, white chocolate</div></div><span class="price">$1.00</span></div>
+            <div class="menu-item"><div><span class="name">Extra Shot</span></div><span class="price">$1.00</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cold Drinks -->
+      <div class="menu-panel" id="panel-cold">
+        <div class="menu-cols">
+          <div class="menu-cat">
+            <h3>Iced &amp; Matcha</h3>
+            <div class="menu-item"><div><span class="name">Iced Latte · Coffee · Mocha</span></div><span class="price">$8.00</span></div>
+            <div class="menu-item"><div><span class="name">Iced Chocolate · Chai · Dirty Chai</span></div><span class="price">$8.00</span></div>
+            <div class="menu-item"><div><span class="name">Iced Matcha</span></div><span class="price">$8.50</span></div>
+            <div class="menu-item"><div><span class="name">Iced White Choc Latte</span></div><span class="price">$9.50</span></div>
+            <div class="menu-item"><div><span class="name">Iced White Choc Matcha</span></div><span class="price">$9.50</span></div>
+          </div>
+          <div class="menu-cat">
+            <h3>Juices &amp; Milkshakes</h3>
+            <div class="menu-item"><div><span class="name">Apple Juice · Orange Juice</span></div><span class="price">$10.00</span></div>
+            <div class="menu-item"><div><span class="name">Super Juice</span><div class="desc">Orange, apple, carrot &amp; ginger</div></div><span class="price">$12.00</span></div>
+            <div class="menu-item"><div><span class="name">Vanilla Milkshake</span></div><span class="price">$7.50</span></div>
+            <div class="menu-item"><div><span class="name">Choc Milkshake</span></div><span class="price">$8.50</span></div>
+            <div class="menu-item"><div><span class="name">Strawberry Milkshake</span></div><span class="price">$8.50</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Wine, Beer & Spirits -->
+      <div class="menu-panel" id="panel-bar">
+        <div class="menu-cols">
+          <div class="menu-cat">
+            <h3>Beers</h3>
+            <div class="menu-item"><div><span class="name">Corona</span><div class="desc">Grupo Modelo, Mexico</div></div><span class="price">$9.00</span></div>
+            <div class="menu-item"><div><span class="name">Peroni</span><div class="desc">Vigevano, Italy</div></div><span class="price">$9.00</span></div>
+            <div class="menu-item"><div><span class="name">Asahi</span><div class="desc">Tokyo, Japan</div></div><span class="price">$9.00</span></div>
+            <div class="menu-item"><div><span class="name">Great Northern</span><div class="desc">Queensland, Australia</div></div><span class="price">$9.00</span></div>
+            <div class="menu-item"><div><span class="name">Tsingtao</span><div class="desc">Qingdao, China</div></div><span class="price">$9.00</span></div>
+            <h3 style="margin-top:32px;">Wines <span class="price-tier">by the glass</span></h3>
+            <div class="menu-item"><div><span class="name">Shiraz</span><div class="desc">Barossa Valley, South Australia</div></div><span class="price">$12.00</span></div>
+            <div class="menu-item"><div><span class="name">Pinot Noir</span><div class="desc">Extremadura, Spain</div></div><span class="price">$12.00</span></div>
+            <div class="menu-item"><div><span class="name">Sauvignon Blanc</span><div class="desc">Yenda, New South Wales</div></div><span class="price">$12.00</span></div>
+            <div class="menu-item"><div><span class="name">Chardonnay</span><div class="desc">Limestone Coast, South Australia</div></div><span class="price">$12.00</span></div>
+          </div>
+          <div class="menu-cat">
+            <h3>Spirits</h3>
+            <div class="menu-item"><div><span class="name">Absolut Vodka</span><div class="desc">Åhus, Sweden</div></div><span class="price">$10.00</span></div>
+            <div class="menu-item"><div><span class="name">Edwin Gin</span><div class="desc">Melbourne, Australia</div></div><span class="price">$10.00</span></div>
+            <div class="menu-item"><div><span class="name">Johnnie Walker Red Label</span><div class="desc">Diageo, Scotland</div></div><span class="price">$10.00</span></div>
+            <div class="menu-item"><div><span class="name">Johnnie Walker Black Label</span><div class="desc">Diageo, Scotland</div></div><span class="price">$12.00</span></div>
+            <div class="menu-item"><div><span class="name">Glenfiddich Single Malt</span><div class="desc">Dufftown, Scotland</div></div><span class="price">$13.00</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Soft Drinks -->
+      <div class="menu-panel" id="panel-soft">
+        <div class="menu-cols">
+          <div class="menu-cat">
+            <div class="menu-item"><div><span class="name">Coke</span></div><span class="price">$4.50</span></div>
+            <div class="menu-item"><div><span class="name">Coke Zero</span></div><span class="price">$4.50</span></div>
+            <div class="menu-item"><div><span class="name">Sprite</span></div><span class="price">$4.50</span></div>
+          </div>
+          <div class="menu-cat">
+            <div class="menu-item"><div><span class="name">Soda or Tonic Water</span></div><span class="price">$5.00</span></div>
+            <div class="menu-item"><div><span class="name">Lemon Lime Bitters</span></div><span class="price">$6.00</span></div>
+            <div class="menu-item"><div><span class="name">Cans</span></div><span class="price">$3.00</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <p class="menu-note">Please inform staff of any food allergy. Our products may contain traces of nuts, wheat, dairy, eggs, pork or soy — zero exposure to allergens is not guaranteed.</p>
+  </div>
+</section>
+
+<!-- ===== Visit / Contact ===== -->
+<section class="visit" id="visit">
+  <div class="wrap">
+    <div class="visit-grid">
+      <div class="info-card reveal">
+        <div class="eyebrow">Visit Us</div>
+        <h2>Come Say Hello</h2>
+        <div class="info-row">
+          <span class="ico">📍</span>
+          <div>
+            <span class="label">Location</span>
+            <!-- REPLACE-MAP (address) -->
+            <a class="val" href="https://www.google.com/maps/search/?api=1&query=1+Stanley+Road+Vermont+South+VIC+3133" target="_blank" rel="noopener">1 Stanley Road, Vermont South VIC 3133</a>
+          </div>
+        </div>
+        <div class="info-row">
+          <span class="ico">✉️</span>
+          <div>
+            <span class="label">Email</span>
+            <a class="val" href="mailto:ramsay.gardens.cafevic@gmail.com">ramsay.gardens.cafevic@gmail.com</a>
+          </div>
+        </div>
+        <div class="info-row">
+          <span class="ico">📞</span>
+          <div>
+            <span class="label">Phone</span>
+            <a class="val" href="tel:+61421244837">0421 244 837</a>
+          </div>
+        </div>
+        <div class="info-row">
+          <span class="ico">🕒</span>
+          <div style="flex:1;">
+            <span class="label">Opening Hours</span>
+            <ul class="hours-list">
+              <li><span>Monday</span><span>Closed</span></li>
+              <li><span>Tuesday – Friday</span><span>8:00 – 15:00</span></li>
+              <li><span>Saturday – Sunday</span><span>8:30 – 15:00</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="map-col reveal">
+        <!-- REPLACE-MAP (embed) -->
+        <iframe
+          class="map-embed"
+          title="Map to Ramsay Gardens Cafe"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps?q=1%20Stanley%20Road%2C%20Vermont%20South%20VIC%203133&output=embed">
+        </iframe>
+        <div class="map-btns">
+          <a class="btn btn-dark" href="https://www.google.com/maps/dir/?api=1&destination=1+Stanley+Road+Vermont+South+VIC+3133" target="_blank" rel="noopener">Directions in Google Maps</a>
+          <a class="btn btn-outline" href="https://maps.apple.com/?daddr=1%20Stanley%20Road,%20Vermont%20South%20VIC%203133" target="_blank" rel="noopener">Open in Apple Maps</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Getting here -->
+    <div class="getting-here reveal">
+      <div class="sec-head" style="margin-bottom:0;">
+        <div class="eyebrow">Getting Here</div>
+        <h2>Easy to Find</h2>
+      </div>
+      <div class="gh-grid">
+        <div class="gh-card">
+          <span class="ico">🛍️</span>
+          <h3>5 min from The Glen</h3>
+          <p>We're just a five-minute drive from The Glen shopping centre in Glen Waverley, with free street parking nearby.</p>
+        </div>
+        <div class="gh-card">
+          <span class="ico">🚊</span>
+          <h3>Tram at the door</h3>
+          <p>The tram line runs directly out the front — hop off at <strong>Stop 76</strong> and you're here.</p>
+          <a class="link" href="https://www.ptv.vic.gov.au/" target="_blank" rel="noopener">Plan your trip with PTV →</a>
+        </div>
+        <div class="gh-card">
+          <span class="ico">🗺️</span>
+          <h3>Other options</h3>
+          <p>Prefer to navigate door-to-door? Use the live journey planner, or open directions in your maps app above.</p>
+          <a class="link" href="https://maps.google.com/?q=Ramsay+Gardens+Cafe+Vermont+South" target="_blank" rel="noopener">Find us on the map →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Social / Connect ===== -->
+<section class="social" id="connect">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">Stay In The Loop</div>
+      <h2>Follow Along</h2>
+      <p>Daily specials, new menu drops and the occasional puppuccino. Catch us on Instagram &amp; Facebook.</p>
+    </div>
+
+    <div class="social-block reveal">
+      <h3 class="social-panel-title">From our Instagram</h3>
+      <!-- Live Instagram posts are built from the IG_POSTS list in the script at the
+           bottom of this file. They render in a grid so every photo is fully visible.
+           Until links are added, the grid below (linking to your profile) is shown. -->
+      <div id="igFeed" class="ig-embed-feed"></div>
+      <div id="igFallback" class="ig-grid">
+      <a class="ig-tile" href="https://instagram.com/ramsaygardenscafe" target="_blank" rel="noopener" aria-label="Ramsay Gardens on Instagram">
+        <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=500&q=70" alt="Coffee" />
+        <span class="ig-overlay"><svg viewBox="0 0 24 24"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.5a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9zm0 2a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zm4.8-2.9a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/></svg></span>
+      </a>
+      <a class="ig-tile" href="https://instagram.com/ramsaygardenscafe" target="_blank" rel="noopener" aria-label="Ramsay Gardens on Instagram">
+        <img src="https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=500&q=70" alt="Breakfast" />
+        <span class="ig-overlay"><svg viewBox="0 0 24 24"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.5a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9zm0 2a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zm4.8-2.9a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/></svg></span>
+      </a>
+      <a class="ig-tile" href="https://instagram.com/ramsaygardenscafe" target="_blank" rel="noopener" aria-label="Ramsay Gardens on Instagram">
+        <img src="https://images.unsplash.com/photo-1551782450-a2132b4ba21d?auto=format&fit=crop&w=500&q=70" alt="Burger" />
+        <span class="ig-overlay"><svg viewBox="0 0 24 24"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.5a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9zm0 2a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zm4.8-2.9a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/></svg></span>
+      </a>
+      <a class="ig-tile" href="https://instagram.com/ramsaygardenscafe" target="_blank" rel="noopener" aria-label="Ramsay Gardens on Instagram">
+        <img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?auto=format&fit=crop&w=500&q=70" alt="Pancakes" />
+        <span class="ig-overlay"><svg viewBox="0 0 24 24"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.5a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9zm0 2a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zm4.8-2.9a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/></svg></span>
+      </a>
+      <a class="ig-tile" href="https://instagram.com/ramsaygardenscafe" target="_blank" rel="noopener" aria-label="Ramsay Gardens on Instagram">
+        <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=500&q=70" alt="Latte art" />
+        <span class="ig-overlay"><svg viewBox="0 0 24 24"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.5a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9zm0 2a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zm4.8-2.9a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/></svg></span>
+      </a>
+      <a class="ig-tile" href="https://instagram.com/ramsaygardenscafe" target="_blank" rel="noopener" aria-label="Ramsay Gardens on Instagram">
+        <img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=500&q=70" alt="Brunch plate" />
+        <span class="ig-overlay"><svg viewBox="0 0 24 24"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.5a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9zm0 2a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zm4.8-2.9a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/></svg></span>
+      </a>
+      <a class="ig-tile" href="https://www.facebook.com/p/Ramsay-Gardens-Cafe-100083618011630/" target="_blank" rel="noopener" aria-label="Ramsay Gardens on Facebook">
+        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=500&q=70" alt="Cafe interior" />
+        <span class="ig-overlay"><svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12z"/></svg></span>
+      </a>
+      <a class="ig-tile" href="https://www.facebook.com/p/Ramsay-Gardens-Cafe-100083618011630/" target="_blank" rel="noopener" aria-label="Ramsay Gardens on Facebook">
+        <img src="https://images.unsplash.com/photo-1521017432531-fbd92d768814?auto=format&fit=crop&w=500&q=70" alt="Coffee and cake" />
+        <span class="ig-overlay"><svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12z"/></svg></span>
+      </a>
+    </div>
+    </div><!-- /Instagram block -->
+
+    <div class="social-block reveal">
+      <h3 class="social-panel-title">Find us on Facebook</h3>
+      <!-- REPLACE-SOCIAL (Facebook live feed) — shows your page timeline automatically.
+           If it ever appears blank, replace the href value with your page's main URL. -->
+      <div class="fb-wrap">
+          <iframe
+            title="Ramsay Gardens Cafe on Facebook"
+            src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2F100083618011630&tabs=timeline&width=500&height=620&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=true"
+            height="620" scrolling="no" frameborder="0"
+            allowfullscreen="true" allow="encrypted-media; clipboard-write; web-share"></iframe>
+        </div>
+      </div>
+    </div><!-- /Facebook block -->
+
+    <!-- REPLACE-SOCIAL: profile links -->
+    <div class="social-buttons reveal">
+      <a class="social-btn" href="https://instagram.com/ramsaygardenscafe" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.5a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9zm0 2a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zm4.8-2.9a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/></svg>
+        @ramsaygardenscafe
+      </a>
+      <a class="social-btn" href="https://www.facebook.com/p/Ramsay-Gardens-Cafe-100083618011630/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12z"/></svg>
+        Ramsay Gardens Cafe
+      </a>
+      <a class="social-btn" href="mailto:ramsay.gardens.cafevic@gmail.com">
+        <svg viewBox="0 0 24 24"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm0 2v.4l8 5 8-5V6H4zm16 2.7-7.5 4.7a1 1 0 0 1-1 0L4 8.7V18h16V8.7z"/></svg>
+        Email Us
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Footer ===== -->
+<footer>
+  <img src="logo-ink.png" alt="Ramsay Gardens Cafe" class="footer-logo" onerror="this.style.display='none';" />
+  <span class="brand">Ramsay Gardens Cafe</span>
+  1 Stanley Road, Vermont South VIC 3133 · Open Tue–Sun<br />
+  <a href="#home" data-scroll>Back to top ↑</a> &nbsp;·&nbsp;
+  <a href="tel:+61421244837">0421 244 837</a> &nbsp;·&nbsp;
+  <a href="mailto:ramsay.gardens.cafevic@gmail.com">ramsay.gardens.cafevic@gmail.com</a>
+  <div style="margin-top:12px; opacity:0.7;">© <span id="yr"></span> Ramsay Gardens Cafe. All rights reserved.</div>
+</footer>
+
+<script>
+  /* ============================================================
+     ⭐ ADD YOUR REAL INSTAGRAM POSTS HERE ⭐
+     On Instagram: open a post → tap the "..." (or Share) → "Copy link".
+     Paste each link between quotes below, separated by commas.
+     Save the file and refresh — your real posts appear automatically.
+     ============================================================ */
+  var IG_POSTS = [
+    "https://www.instagram.com/p/DZLvNPzzrKJ/",
+    "https://www.instagram.com/p/DVKRogOE1Xy/",
+    "https://www.instagram.com/p/DRIiH1ViRoV/",
+    "https://www.instagram.com/p/DNPdXKBJ4b2/",
+    "https://www.instagram.com/p/DQQHzehk5ig/",
+    "https://www.instagram.com/p/DVZujEyE455/",
+  ];
+
+  (function () {
+    // ---- Instagram live embeds (or fallback grid) ----
+    var igFeed = document.getElementById('igFeed');
+    var igFallback = document.getElementById('igFallback');
+    var realPosts = IG_POSTS.filter(function (u) { return u && u.indexOf('instagram.com/') !== -1; });
+    if (realPosts.length && igFeed) {
+      igFeed.innerHTML = realPosts.map(function (url) {
+        return '<blockquote class="instagram-media" data-instgrm-permalink="' + url +
+               '" data-instgrm-version="14" style="width:100%;max-width:540px;margin:0 auto;"></blockquote>';
+      }).join('');
+      if (igFallback) igFallback.style.display = 'none';
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.instagram.com/embed.js';
+      s.onload = function () { if (window.instgrm) window.instgrm.embeds.process(); };
+      document.body.appendChild(s);
+    } else if (igFeed) {
+      igFeed.style.display = 'none'; // no posts yet → show the linked grid
+    }
+
+    // ---- Mobile nav toggle ----
+    var btn = document.getElementById('menuBtn');
+    var links = document.getElementById('navLinks');
+    if (btn && links) {
+      btn.addEventListener('click', function () { links.classList.toggle('open'); });
+    }
+
+    // ---- Smooth scroll for ALL in-page links (robust, with sticky-nav offset) ----
+    var navH = 78;
+    document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+      a.addEventListener('click', function (e) {
+        var id = a.getAttribute('href');
+        if (id === '#' || id.length < 2) return;
+        var target = document.querySelector(id);
+        if (!target) return;
+        e.preventDefault();
+        if (links) links.classList.remove('open');
+        var y = target.getBoundingClientRect().top + window.pageYOffset - navH;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+        history.replaceState(null, '', id);
+      });
+    });
+
+    // ---- Year ----
+    var yr = document.getElementById('yr');
+    if (yr) yr.textContent = new Date().getFullYear();
+
+    // ---- Menu tabs ----
+    var tabs = document.querySelectorAll('.menu-tab');
+    var panels = document.querySelectorAll('.menu-panel');
+    tabs.forEach(function (tab) {
+      tab.addEventListener('click', function () {
+        var target = tab.getAttribute('data-tab');
+        tabs.forEach(function (t) { t.classList.remove('active'); });
+        tab.classList.add('active');
+        panels.forEach(function (p) { p.classList.remove('active'); });
+        var panel = document.getElementById('panel-' + target);
+        if (panel) {
+          void panel.offsetWidth; // restart entrance animation
+          panel.classList.add('active');
+        }
+        tab.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      });
+    });
+
+    // ---- Scroll reveal ----
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
+        });
+      }, { threshold: 0.12 });
+      document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+    } else {
+      document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('in'); });
+    }
+  })();
+</script>
+</body>
+</html>
