@@ -305,6 +305,9 @@
         _captcha: "false"
       };
 
+      // Store the booking so a scheduled function can text a day-of reminder (best-effort; ignores failures).
+      try { fetch("/.netlify/functions/book", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ name: data.Name, phone: data.Phone, email: data.Email, date: dv, time: data.Time, guests: data.Guests, notes: data.Notes }) }).catch(function () {}); } catch (e) {}
+
       subBtn.disabled = true; subBtn.textContent = "Sending…"; msg.textContent = "";
       fetch("https://formsubmit.co/ajax/" + BOOKING_EMAIL, {
         method: "POST",

@@ -1,0 +1,9 @@
+# Netlify configuration for Ramsay Gardens Cafe
+# Static site served from the repo root, plus serverless functions in
+# netlify/functions (booking storage + the day-of SMS reminder cron).
+
+[build]
+  publish = "."
+
+[functions]
+  node_bundler = "esbuild"

@@ -1,0 +1,9 @@
+{
+  "name": "ramsay-gardens-cafe",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Ramsay Gardens Cafe website + booking storage and day-of SMS reminder functions.",
+  "dependencies": {
+    "@netlify/blobs": "^11.1.6"
+  }
+}
